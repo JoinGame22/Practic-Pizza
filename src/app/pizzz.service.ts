@@ -16,5 +16,12 @@ export class PizzzService {
     return this._httpClient.put<any>('https://private-86efb4-jdai.apiary-mock.com/pizza-service/v1/pizza/create', pizza);
   }
 
+  updatePizza(pizza:any){
+    return this._httpClient.post<any>('https://private-86efb4-jdai.apiary-mock.com/pizza-service/v1/pizzaId', pizza);
+  }
+
+  deletePizza(){
+    return this._httpClient.delete<any>('https://private-86efb4-jdai.apiary-mock.com/pizza-service/v1/pizzaId');
+  }
 
 }

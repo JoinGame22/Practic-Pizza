@@ -3,13 +3,19 @@
         
         <mat-form-field appearance="outline">
             <mat-label>UserName</mat-label>
-            <input matInput placeholder="Placeholder" 
+            <input matInput placeholder="Username" 
                 [(ngModel)]="userName"                    
                 [ngModelOptions]=" {standalone: true}">
-            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-            <mat-hint>Hint</mat-hint>
         </mat-form-field>
 
-        <button mat-button color="primary" (click)="Login()">Sign in</button>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="Password" 
+                [(ngModel)]="password"                    
+                [ngModelOptions]=" {standalone: true}">
+        </mat-form-field>
+
+        <button mat-button color="primary" (click)="signIn()">Sign in</button>
     </div>
 </div>
