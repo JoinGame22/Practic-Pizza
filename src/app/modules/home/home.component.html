@@ -1,0 +1,50 @@
+<div class="flex flex-col mt-8 w-full h-full">
+    <div class="px-10  w-full max-w-3xl">
+        <div class="max-w-none mx-auto prose prose-sm">
+            <img
+                class="w-20"
+                src="logo.svg"
+                alt="Logo image">
+            <h1>Component Specification: Component Name</h1>
+            <p>
+                This page can provide the specification document of  this component template in detail, including the function, the model and exceptions. And it provides the usage document
+                to help.
+            </p>
+
+            <h3>Function</h3>
+            <p>describe function for the component FMComponent</p>
+
+            <h3>Code</h3>
+            <ul>
+                <li>change the selector fm-registId of FMComponent to the fr-<b>registerId value from develop</b></li>
+                <li>change the fm_registerId.component.ts filename with the <b>registerId value from develop</b></li>
+                <li>change the <b>filename of exposed module</b> to right changed component filename in webpack.config.js</li>
+            </ul>
+
+            <h3>Test</h3>
+            <p>
+                get the test data from develop, then change the var data object in TestComponent.
+            </p>
+
+            <h3>Deploy</h3>
+            <ul>
+                <li><b>npm run build</b>: to build the component into dist folder </li>
+                <li><b>npm run deploy:surge</b>: to deploy this component to surge</li>
+                <li><b>npm run deploy:github pages</b>: to deploy this component to github pages</li>
+            </ul>
+
+        </div>
+        <div>
+            <a
+                class="mt-8"
+                mat-flat-button
+                [color]="'primary'"
+                [routerLink]="'/test'">
+                <span>Launch the Test</span>
+                <mat-icon
+                    class="ml-2 icon-size-5"
+                    [svgIcon]="'heroicons_mini:arrow-long-right'"></mat-icon>
+            </a>
+        </div>
+    </div>
+</div>
