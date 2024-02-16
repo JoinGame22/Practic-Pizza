@@ -12,7 +12,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "deploy:surge": "surge",
-    "deploy:ghpages": "ng build --base-href ./ && npx angular-cli-ghpages --dir=dist",
+    "deploy:": "ng build --base-href ./ && npx angular-cli-ghpages --dir=dist",
     "run:all": "node node_modules/@angular-architects/module-federation/src/server/mf-dev-server.js"
   },
   "dependencies": {
