@@ -1,10 +1,5 @@
 <div class="flex flex-col mt-8 w-full h-full">
   <mat-drawer-container class="example-container" autosize>
-      <mat-drawer #drawer mode="side" [(opened)]="opened">
-          <!-- Drawer content -->
-          Sidenav content
-      </mat-drawer>
-
       <mat-drawer-content>
           <div class="px-10 w-full max-w-3xl">
               <div class="max-w-none mx-auto prose prose-sm">
@@ -29,7 +24,7 @@
                           <mat-card-header>
                               <div mat-card-avatar class="example-header-image"></div>
                               <mat-card-title>{{pizza.name}}</mat-card-title>
-                              <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+                              <mat-card-subtitle>{{pizza.topping}}</mat-card-subtitle>
                           </mat-card-header>
                           <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
                               alt="Photo of a Shiba Inu">
@@ -40,12 +35,66 @@
                           </mat-card-content>
                           <mat-card-actions>
                               <button [color]="primary" mat-button>Delete</button>
-                              <button mat-button>Edit</button>
+                              <button [color]="primary" mat-button>Edit</button>
                           </mat-card-actions>
                       </mat-card>
                   </div>
               </div>
           </div>
       </mat-drawer-content>
+
+      <mat-drawer mode="side" opened>
+        
+        <div class="px-10 w-full max-w-3xl">
+            <div class="max-w-none mx-auto prose prose-sm">
+
+            <h1>Create Pizza</h1>
+        
+            <mat-form-field class="example-form-field">
+                <mat-label>Pizza Name</mat-label>
+                <input matInput type="text" [(ngModel)]="value">
+                <button matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+
+            <section class="example-section" *ngFor="let topping of Topping" [formGroup]="toppings">
+                <h4>Select your toppings:</h4>
+                <p><mat-checkbox [formControlName]="topping.name">{{ topping.name }}</mat-checkbox></p>
+              </section>
+                  
+            <section class="example-section" [formGroup]="toppings">
+                <h4>You chose:</h4>
+                    {{toppings.value | json}}
+            </section>
+          
+              
+            <p>
+                <mat-form-field class="example-form-field">
+                    <mat-label>Price</mat-label>
+                    <input matInput type="text" [(ngModel)]="value">
+                    <button matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </mat-form-field>
+            </p>      
+            <p>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Description</mat-label>
+                    <textarea matInput placeholder="Ex. Tasty Cheesy Pizza..."></textarea>
+                  </mat-form-field>
+            </p>
+
+            <div class="create">
+              <button mat-raised-button>Create Pizza</button>
+            </div>
+        
+        
+        
+        
+            </div>
+        </div>
+    </mat-drawer>
+
   </mat-drawer-container>
 </div>

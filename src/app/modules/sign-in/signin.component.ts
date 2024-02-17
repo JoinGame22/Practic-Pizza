@@ -6,7 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { PizzzService } from 'app/pizzz.service';
+import { PizzaService } from 'app/pizza.service';
 import { UserProfileService } from 'app/user-profile.service';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 
@@ -29,7 +29,7 @@ export class SignInComponent implements OnInit
      */
     constructor(
         private _userProfileService:UserProfileService,
-        private _pizzaService:PizzzService,
+        private _pizzaService:PizzaService,
         private _formBuilder: UntypedFormBuilder,
         private _router: Router
 
