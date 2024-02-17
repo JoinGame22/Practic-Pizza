@@ -23,7 +23,9 @@ import { ToppingService } from 'app/topping.service';
 })
 export class ChefMainComponent implements OnInit
 {   
-    value = "";
+    PizzaName = "";
+    PizzaPrice = "";
+    PizzaDescription = "";
 
     toppings: FormGroup;
 
@@ -63,5 +65,18 @@ export class ChefMainComponent implements OnInit
           this.toppings.addControl(element.name, new FormControl(false)); // Initialize with false
         });
 
+    }
+
+
+    CreatePizza(){
+
+    }
+
+    DeletePizza(){
+        
+    }
+
+    EditPizza(){
+        
     }
 }
