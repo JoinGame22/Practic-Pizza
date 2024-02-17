@@ -1,49 +1,8 @@
 <div class="flex flex-col mt-8 w-full h-full">
-  <mat-drawer-container class="example-container" autosize>
-      <mat-drawer-content>
-          <div class="px-10 w-full max-w-3xl">
-              <div class="max-w-none mx-auto prose prose-sm">
-                  <img class="w-20" src="logo.svg" alt="Logo image">
-                  <h1>Chef Page</h1>
-                  <p>This is the Chef's page</p>
 
-                  <h3>Functions</h3>
-                  <ul>
-                      <li>It should allow me to see a list of existing pizzas and their toppings.</li>
-                      <li>It should allow me to create a new pizza and add toppings to it.</li>
-                      <li>It should allow me to delete an existing pizza.</li>
-                      <li>It should allow me to update an existing pizza.</li>
-                      <li>It should allow me to update toppings on an existing pizza.</li>
-                      <li>It should not allow me to enter duplicate pizzas.</li>
-                  </ul>
+  <mat-drawer-container>
 
-                  <h3>Menu</h3>
-
-                  <div class="flex flex-col">
-                      <mat-card *ngFor="let pizza of pizzas" class="example-card">
-                          <mat-card-header>
-                              <div mat-card-avatar class="example-header-image"></div>
-                              <mat-card-title>{{pizza.name}}</mat-card-title>
-                              <mat-card-subtitle>{{pizza.topping}}</mat-card-subtitle>
-                          </mat-card-header>
-                          <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-                              alt="Photo of a Shiba Inu">
-                          <mat-card-content>
-                              <p>
-                                  {{pizza.description}}
-                              </p>
-                          </mat-card-content>
-                          <mat-card-actions>
-                              <button [color]="primary" mat-button>Delete</button>
-                              <button [color]="primary" mat-button>Edit</button>
-                          </mat-card-actions>
-                      </mat-card>
-                  </div>
-              </div>
-          </div>
-      </mat-drawer-content>
-
-      <mat-drawer mode="side" opened>
+    <mat-drawer mode="side" opened>
         
         <div class="px-10 w-full max-w-3xl">
             <div class="max-w-none mx-auto prose prose-sm">
@@ -58,17 +17,13 @@
                 </button>
             </mat-form-field>
 
+            <h4>Select your toppings:</h4>
             <section class="example-section" *ngFor="let topping of Topping" [formGroup]="toppings">
-                <h4>Select your toppings:</h4>
-                <p><mat-checkbox [formControlName]="topping.name">{{ topping.name }}</mat-checkbox></p>
+                
+                <p><mat-checkbox >{{ topping.name }}</mat-checkbox></p>
               </section>
-                  
-            <section class="example-section" [formGroup]="toppings">
-                <h4>You chose:</h4>
-                    {{toppings.value | json}}
-            </section>
+                         
           
-              
             <p>
                 <mat-form-field class="example-form-field">
                     <mat-label>Price</mat-label>
@@ -96,5 +51,50 @@
         </div>
     </mat-drawer>
 
+
+    <mat-drawer-content>
+          <div class="px-10 w-full max-w-3xl">
+              <div class="max-w-none mx-auto prose prose-sm">
+                  <img class="w-20" src="logo.svg" alt="Logo image">
+                  <h1>Chef Page</h1>
+                  <p>This is the Chef's page</p>
+
+                  <h3>Functions</h3>
+                  <ul>
+                      <li>It should allow me to see a list of existing pizzas and their toppings.</li>
+                      <li>It should allow me to create a new pizza and add toppings to it.</li>
+                      <li>It should allow me to delete an existing pizza.</li>
+                      <li>It should allow me to update an existing pizza.</li>
+                      <li>It should allow me to update toppings on an existing pizza.</li>
+                      <li>It should not allow me to enter duplicate pizzas.</li>
+                  </ul>
+
+                  <h3>Menu</h3>
+
+                  <div class="flex flex-col">
+                      <mat-card *ngFor="let pizza of pizzas" class="w-60 h-60">
+                          <mat-card-header>
+                              <div mat-card-avatar class="example-header-image"></div>
+                              <mat-card-title>{{pizza.name}}</mat-card-title>
+                              <mat-card-subtitle>{{pizza.topping}}</mat-card-subtitle>
+                          </mat-card-header>
+                          <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+                              alt="Photo of a Shiba Inu">
+                          <mat-card-content>
+                              <p>
+                                  {{pizza.description}}
+                              </p>
+                          </mat-card-content>
+                          <mat-card-actions>
+                              <button [color]="primary" mat-button>Delete</button>
+                              <button [color]="primary" mat-button>Edit</button>
+                          </mat-card-actions>
+                      </mat-card>
+                  </div>
+              </div>
+          </div>
+    </mat-drawer-content>
+
+   
   </mat-drawer-container>
 </div>
