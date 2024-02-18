@@ -9,7 +9,7 @@ export class PizzaService {
   constructor(private _httpClient: HttpClient) { }
 
   findAllPizzas(){
-    return this._httpClient.get<any>('http://private-86efb4-jdai.apiary-mock.com/pizza-service/v1/pizza/list');
+    return this._httpClient.get<any>('https://private-86efb4-jdai.apiary-mock.com/pizza-service/v1/pizza/list');
   }
 
   createPizza(pizza:any){
