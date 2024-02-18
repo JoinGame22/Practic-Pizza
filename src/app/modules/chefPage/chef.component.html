@@ -30,10 +30,11 @@
                 <mat-form-field class="example-form-field">
                     <mat-label>Price</mat-label>
                     <input matInput 
+                    type="number"
                     placeholder="Price" 
-                    [(ngModel)]="PizzaName"                    
+                    [(ngModel)]="PizzaPrice"                    
                     [ngModelOptions]=" {standalone: true}">
-                    <button matSuffix mat-icon-button aria-label="Clear" (click)="PizzaPrice=''">
+                    <button matSuffix mat-icon-button aria-label="Clear" (click)="PizzaPrice=null">
                         <mat-icon>close</mat-icon>
                     </button>
                 </mat-form-field>
@@ -43,7 +44,7 @@
                     <mat-label>Description</mat-label>
                     <textarea matInput 
                     placeholder="Ex. Tasty Cheesy Pizza..."
-                    [(ngModel)]="PizzaName"                    
+                    [(ngModel)]="PizzaDescription"                    
                     [ngModelOptions]=" {standalone: true}">>
                 </textarea>
                   </mat-form-field>

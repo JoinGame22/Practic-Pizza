@@ -13,6 +13,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { ToppingService } from 'app/topping.service';
+import { create } from 'lodash';
 
 @Component({
     selector     : 'chef-home',
@@ -24,8 +25,18 @@ import { ToppingService } from 'app/topping.service';
 export class ChefMainComponent implements OnInit
 {   
     PizzaName = "";
-    PizzaPrice = "";
+    PizzaPrice = 0;
+    PizzaTopping = "";
     PizzaDescription = "";
+    
+    createPizza: Pizza = {
+        
+        name: 'PizzaName',
+        pic: '',
+        price: this.PizzaPrice,
+        topping: 'PizzaTopping',
+        description: 'PizzaDescription'
+    };
 
     toppings: FormGroup;
 
@@ -69,6 +80,16 @@ export class ChefMainComponent implements OnInit
 
 
     CreatePizza(){
+
+        this._pizzaService.createPizza(this.createPizza).subscribe(
+            response=>{
+
+                console.log('Pizza created successfully:', response);
+              },
+              error => {
+                console.error('Error creating pizza:', error);
+              }
+            );
 
     }
 

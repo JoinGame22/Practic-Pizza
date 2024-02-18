@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { ChefMainComponent } from 'app/modules/home/chef.component';
+import { ChefMainComponent } from 'app/modules/chefPage/chef.component';
 import { SignInComponent } from '../sign-in/signin.component';
 import { TestComponent } from '../test/test.component';
 
