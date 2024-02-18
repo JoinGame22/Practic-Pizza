@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
@@ -132,10 +132,15 @@ export class ChefMainComponent implements OnInit
         );
     }
 
-    DeletePizza(pizza:Pizza){
+    DeletePizza(_pizza:Pizza){
 
+        this._pizzaService.deletePizza(_pizza).subscribe(
+            response=>{
+                //mock
+                 let index = this.pizzas.findIndex(p=>p.id===_pizza.id);
+                 this.pizzas.splice(index,1);
+            }
+        );
+       
     }
-
-    
-
 }
