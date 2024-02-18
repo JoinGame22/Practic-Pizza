@@ -60,15 +60,15 @@
                             <mat-card-subtitle class="text-secondary mb-0.5">{{pizza.topping}}</mat-card-subtitle>
                         </mat-card-header>
                         <img mat-card-image src="https://thecozycook.com/wp-content/uploads/2023/08/Buffalo-Chicken-Pizza-f.jpg"
-                            alt="Photo of a Shiba Inu">
+                            alt="Photo of a Pizza">
                         <mat-card-content>
                             <p class="py-2">
                                 {{pizza.description}}
                             </p>
                         </mat-card-content>
                         <mat-card-actions>
-                            <button [color]="primary" mat-button>Delete</button>
-                            <button [color]="primary" mat-button>Edit</button>
+                            <button [color]="primary" (click)="DeletePizza(pizza); openDialog('0ms', '0ms')"mat-button>Delete</button>
+                            <button [color]="primary" (click)="EditPizza(pizza)" mat-button>Edit</button>
                         </mat-card-actions>
                     </mat-card>
                 </div>
@@ -96,7 +96,7 @@
                 </a>
 
                 <div class="ml-2 text-lg font-medium">Pizza Info</div>
-              
+                <button class="ml-auto" [color]="'primary'" mat-raised-button (click)="CreatePizza()">Create Pizza</button>
 
             </div>
            
@@ -126,7 +126,7 @@
 
                     <h4>Select your toppings:</h4>
                        <!-- toppings -->
-                        <div class="mt-2" *ngFor="let topping of Topping" >                           
+                        <div class="mt-2" *ngFor="let topping of toppingList" >                           
                             <mat-checkbox  [checked]="checkedTopping(topping.name)"  [ngModelOptions]="{standalone: true}"  (click)="SelectChanged(topping.name)"  [value]="topping.name"> {{ topping.name }}</mat-checkbox>                           
                         </div> 
                 </div>
@@ -174,11 +174,15 @@
                 </div>
     
     
-                <div class="mt-4">
+
+                <div *ngIf="pizza.id" class="mt-4">
+                  <button mat-raised-button (click)="UpdatePizza()">Update Pizza</button>
+                </div>
+            
+               <div *ngIf="pizza.id===null"  class="mt-4">
                   <button mat-raised-button (click)="CreatePizza()">Create Pizza</button>
                 </div>
             
-               
             </div>
             
 

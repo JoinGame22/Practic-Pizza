@@ -17,11 +17,11 @@ export class PizzaService {
   }
 
   updatePizza(pizza:any){
-    return this._httpClient.post<any>('https://private-86efb4-jdai.apiary-mock.com/pizza-service/v1/pizzaId', pizza);
+    return this._httpClient.post<any>('https://private-86efb4-jdai.apiary-mock.com/pizza-service/v1/'+pizza.id, pizza);
   }
 
-  deletePizza(){
-    return this._httpClient.delete<any>('https://private-86efb4-jdai.apiary-mock.com/pizza-service/v1/pizzaId');
+  deletePizza(pizza:any){
+    return this._httpClient.delete<any>('https://private-86efb4-jdai.apiary-mock.com/pizza-service/v1/'+ pizza.id);
   }
 
 }

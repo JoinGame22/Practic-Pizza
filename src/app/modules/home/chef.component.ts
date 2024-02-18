@@ -6,7 +6,7 @@ import Pizza from 'app/interface/pizza';
 import Toppings from 'app/interface/topping';
 import { PizzaService } from 'app/pizza.service';
 import {MatCardModule} from '@angular/material/card';
-import { NgFor, JsonPipe} from '@angular/common';
+import { NgFor, JsonPipe, NgIf} from '@angular/common';
 import { FormBuilder, FormsModule, ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -19,7 +19,7 @@ import { ToppingService } from 'app/topping.service';
     templateUrl  : './chef.component.html',
     encapsulation: ViewEncapsulation.None,
     standalone   : true,
-    imports      : [MatButtonModule, RouterLink, MatIconModule, MatCardModule, NgFor, 
+    imports      : [MatButtonModule, RouterLink, MatIconModule, MatCardModule, NgFor, NgIf,
         FormsModule, MatCheckboxModule, MatSidenavModule, MatFormFieldModule, MatInputModule,
          ReactiveFormsModule, JsonPipe],
 })
@@ -30,16 +30,17 @@ export class ChefMainComponent implements OnInit
     toppings: FormGroup;
 
     pizzas: Pizza[];
-    Topping:Toppings[];
+    toppingList:Toppings[];
 
     pizza:Pizza={
 
-        id: '',
+        id: null,
         name: '',
         pic: '',
         price: 0,
-        description: '',
-        toppings:[]
+        description: '',        
+        topping:'',
+        toppingList: []
 
     };
     /**
@@ -58,35 +59,83 @@ export class ChefMainComponent implements OnInit
                 console.log(this.pizzas);
             }
         )
-
-       
-
-        
+             
         this._toppingService.findAllToppings().subscribe(
             response=>{
-                this.Topping = response;
-                console.log(this.Topping);
+                this.toppingList = response;
+                console.log(this.toppingList);
             }
         )   
     
     }
 
     SelectChanged(toppingName:string){
-        if(!this.pizza.toppings.includes(toppingName)){
-            this.pizza.toppings.push(toppingName);
+        if(!this.pizza.toppingList.includes(toppingName)){
+            this.pizza.toppingList.push(toppingName);
         }
         else{
 
-           let index =  this.pizza.toppings.findIndex(toppingItem=>toppingItem===toppingName);
-           this.pizza.toppings.splice(index, 1);
+           let index =  this.pizza.toppingList.findIndex(toppingItem=>toppingItem===toppingName);
+           this.pizza.toppingList.splice(index, 1);
         }
+
+        this.pizza.topping = this.pizza.toppingList.join(',');
+
     }
 
     checkedTopping(toppingName:string){
-        return this.pizza.toppings.includes(toppingName);
+        return this.pizza.toppingList.includes(toppingName);
     }
 
     CreatePizza(){
+
+        this._pizzaService.createPizza(this.pizza).subscribe(
+            response=>{
+                //mock new pizza-id
+                this.pizza.id = "Pizza"+Date.now();
+
+                //add the new pizza into the list
+                this.pizzas = [...this.pizzas, this.pizza];
+
+                //reset form
+                this.pizza={
+
+                    id: null,
+                    name: '',
+                    pic: '',
+                    price: 0,
+                    description: '',        
+                    topping:'',
+                    toppingList: []
+            
+                };
+
+            }
+        )
         console.log(this.pizza);
     }
+
+    EditPizza(pizza:Pizza){
+        this.pizza = JSON.parse(JSON.stringify(pizza));
+        this.pizza.toppingList = this.pizza.topping.split(',');
+
+    }
+
+    UpdatePizza(){
+        
+        this._pizzaService.updatePizza(this.pizza).subscribe(
+            response=>{
+                //mock
+                 let index = this.pizzas.findIndex(p=>p.id===this.pizza.id);
+                 this.pizzas.splice(index,1, this.pizza);
+            }
+        );
+    }
+
+    DeletePizza(pizza:Pizza){
+
+    }
+
+    
+
 }

@@ -4,8 +4,9 @@ export default interface Pizza{
     name:string,
     pic:string,
     price:number,
-    description:string
-    toppings:string[]
+    description:string,
+    topping:string,
+    toppingList:string[]
 
 
 }
