@@ -7,6 +7,6 @@ export const appRoutes: Route[] = [
 
     // Redirect empty path to '/test'
     {path: '', loadChildren: () => import('app/modules/home/home.routes')},
-    {path: 'test', loadChildren: () => import('app/modules/test/test.routes')}
+    //{path: 'test', loadChildren: () => import('app/modules/manager/manager.routes')}
 
 ];

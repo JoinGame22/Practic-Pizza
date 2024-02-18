@@ -8,10 +8,10 @@
         
         <!-- Course title & description -->
     <div class="flex">
-        <div class="mt-1 text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight text-center">Chef Page</div>        <!-- category -->
+        <div class="mt-1 text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight text-center">Manager Page</div>        <!--category -->
         
     </div>
-    <div class="mt-2 text-secondary mb-2">The chef manage the pizza: list , crate, update, delet the pizzas </div>                
+    <div class="mt-2 text-secondary mb-2">The manager manage the Toppoings: list , crate, update, delet the Toppings </div>                
       
     </div>              
       
@@ -41,7 +41,7 @@
                     <mat-icon [svgIcon]="'heroicons_outline:home'"></mat-icon>
                 </a>
 
-                <div class="ml-2 text-lg font-medium">Pizza List</div>
+                <div class="ml-2 text-lg font-medium">Topping List</div>
               
 
             </div>
@@ -53,23 +53,22 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 xl:grid-cols-4 gap-8 mt-2 py-4 sm:mt-2">
 
 
-                    <mat-card *ngFor="let pizza of pizzas" > 
+                    <mat-card *ngFor="let topping of toppingList" > 
                         <mat-card-header>
                             
-                            <mat-card-title class="text-lg font-medium">{{pizza.name}}</mat-card-title>
-                            <mat-card-subtitle class="text-secondary mb-0.5">{{pizza.topping}}</mat-card-subtitle>
-
+                            <mat-card-title class="text-lg font-medium">{{topping.name}}</mat-card-title>
+                            <mat-card-subtitle class="text-secondary mb-0.5">Price: ${{topping.price}}</mat-card-subtitle>
                         </mat-card-header>
-                        <img mat-card-image src="https://thecozycook.com/wp-content/uploads/2023/08/Buffalo-Chicken-Pizza-f.jpg"
+                        <img mat-card-image src="https://herbivoreskitchen.com/wp-content/uploads/2021/03/Vegan-Pizza-Toppings-Header-3.png"
                             alt="Photo of a Pizza">
                         <mat-card-content>
                             <p class="py-2">
-                                {{pizza.description}}
+                                {{topping.description}}
                             </p>
                         </mat-card-content>
                         <mat-card-actions>
-                            <button [color]="primary" (click)="DeletePizza(pizza)"mat-button>Delete</button>
-                            <button [color]="primary" (click)="EditPizza(pizza)" mat-button>Edit</button>
+                            <button [color]="primary" (click)="DeleteTopping(topping)"mat-button>Delete</button>
+                            <button [color]="primary" (click)="EditTopping(topping)" mat-button>Edit</button>
                         </mat-card-actions>
                     </mat-card>
                 </div>
@@ -96,7 +95,7 @@
                     <mat-icon [svgIcon]="'heroicons_outline:chart-pie'"></mat-icon>
                 </a>
 
-                <div class="ml-2 text-lg font-medium">Pizza Info</div>
+                <div class="ml-2 text-lg font-medium">Topping Info</div>
                 <button class="ml-auto" [color]="'primary'" mat-raised-button (click)="Reset()">Reset</button>
 
             </div>
@@ -116,22 +115,12 @@
                         <input
                             matInput
                             [required]="'true'"
-                            [(ngModel)]="pizza!.name"
+                            [(ngModel)]="topping!.name"
                             [ngModelOptions]="{standalone: true}"                            
                             [placeholder]="'Name'"
                             [spellcheck]="false">
                     </mat-form-field>
-                </div>
-    
-                <div class="mt-8 w-full">
-
-                    <h4>Select your toppings:</h4>
-                       <!-- toppings -->
-                        <div class="mt-2" *ngFor="let topping of toppingList" >                           
-                            <mat-checkbox  [checked]="checkedTopping(topping.name)"  [ngModelOptions]="{standalone: true}"  (click)="SelectChanged(topping.name)"  [value]="topping.name"> {{ topping.name }}</mat-checkbox>                           
-                        </div> 
-                </div>
-                     
+                </div>       
               
                    <!-- Name -->
                    <div class="mt-8 w-full">
@@ -146,7 +135,7 @@
                         <input
                             [required]="'true'"
                             matInput
-                            [(ngModel)]="pizza!.price"
+                            [(ngModel)]="topping!.price"
                             [ngModelOptions]="{standalone: true}"                            
                             [placeholder]="'Name'"
                             [spellcheck]="false">
@@ -167,7 +156,7 @@
                         <input
                             matInput
                             [required]="'true'"
-                            [(ngModel)]="pizza!.description"
+                            [(ngModel)]="topping!.description"
                             [ngModelOptions]="{standalone: true}"                            
                             [placeholder]="'Name'"
                             [spellcheck]="false">
@@ -176,12 +165,12 @@
     
     
 
-                <div *ngIf="pizza.id" class="mt-4">
-                  <button mat-raised-button (click)="UpdatePizza()">Update Pizza</button>
+                <div *ngIf="topping.id" class="mt-4">
+                  <button mat-raised-button (click)="UpdateTopping()">Update Topping</button>
                 </div>
             
-               <div *ngIf="pizza.id===null"  class="mt-4">
-                  <button mat-raised-button (click)="CreatePizza()">Create Pizza</button>
+               <div *ngIf="topping.id===null"  class="mt-4">
+                  <button mat-raised-button (click)="CreateTopping()">Create Topping</button>
                 </div>
             
             </div>

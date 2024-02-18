@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { ChefMainComponent } from 'app/modules/home/chef.component';
 import { SignInComponent } from '../sign-in/signin.component';
-import { TestComponent } from '../test/test.component';
+import { managerComponent } from '../manager/manager.component';
 
 export default [
     {
@@ -14,6 +14,6 @@ export default [
     },
     {
         path     : 'owner',
-        component: TestComponent,
+        component: managerComponent,
     }
 ] as Routes;

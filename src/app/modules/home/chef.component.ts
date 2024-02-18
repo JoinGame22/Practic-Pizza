@@ -129,7 +129,11 @@ export class ChefMainComponent implements OnInit
                  let index = this.pizzas.findIndex(p=>p.id===this.pizza.id);
                  this.pizzas.splice(index,1, this.pizza);
             }
+
         );
+
+       
+        
     }
 
     DeletePizza(_pizza:Pizza){
@@ -141,6 +145,20 @@ export class ChefMainComponent implements OnInit
                  this.pizzas.splice(index,1);
             }
         );
-       
+    }
+
+    Reset(){
+        
+        this.pizza={
+
+            id: null,
+            name: '',
+            pic: '',
+            price: 0,
+            description: '',        
+            topping:'',
+            toppingList: []
+    
+        };
     }
 }
