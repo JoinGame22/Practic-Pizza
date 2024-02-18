@@ -100,9 +100,10 @@
                 <button class="ml-auto" [color]="'primary'" mat-raised-button (click)="Reset()">Reset</button>
 
             </div>
-           
+            <form #form="ngForm"  (ngSubmit)="submitForm(form)">
             <div class="relative flex flex-col flex-auto items-center w-full px-6 sm:px-12">
-                          
+                    
+               
                  <!-- Name -->
                  <div class="mt-8 w-full">
                     <mat-form-field
@@ -115,13 +116,17 @@
                             [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
                         <input
                             matInput
-                            [required]="'true'"
-                            [(ngModel)]="pizza!.name"
+                            required                           
+                            [(ngModel)]="pizza!.name"      
+                            #name="ngModel"                    
                             [ngModelOptions]="{standalone: true}"                            
                             [placeholder]="'Name'"
                             [spellcheck]="false">
                     </mat-form-field>
                 </div>
+                <div *ngIf="name.invalid && (name.dirty || name.touched)">
+                    <div *ngIf="name.errors.required">Name is required.</div>
+                  </div>
     
                 <div class="mt-8 w-full">
 
@@ -169,7 +174,7 @@
                             [required]="'true'"
                             [(ngModel)]="pizza!.description"
                             [ngModelOptions]="{standalone: true}"                            
-                            [placeholder]="'Name'"
+                            [placeholder]="'Description'"
                             [spellcheck]="false">
                     </mat-form-field>
                 </div>
@@ -177,15 +182,15 @@
     
 
                 <div *ngIf="pizza.id" class="mt-4">
-                  <button mat-raised-button (click)="UpdatePizza()">Update Pizza</button>
+                  <button mat-raised-button type="submit" [disabled]="form.invalid">Update Pizza</button>
                 </div>
             
                <div *ngIf="pizza.id===null"  class="mt-4">
-                  <button mat-raised-button (click)="CreatePizza()">Create Pizza</button>
+                  <button mat-raised-button type="submit" [disabled]="form.invalid">Create Pizza</button>
                 </div>
             
             </div>
-            
+             </form>
 
         </mat-drawer-content>
 

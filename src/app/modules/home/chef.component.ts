@@ -7,27 +7,28 @@ import Toppings from 'app/interface/topping';
 import { PizzaService } from 'app/pizza.service';
 import {MatCardModule} from '@angular/material/card';
 import { NgFor, JsonPipe, NgIf} from '@angular/common';
-import { FormBuilder, FormsModule, ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
+import {  FormsModule, NgForm } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { ToppingService } from 'app/topping.service';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { DeleteConfirmDialog } from '../dialog/delete-confirm-dialog';
+
 
 @Component({
     selector     : 'chef-home',
     templateUrl  : './chef.component.html',
     encapsulation: ViewEncapsulation.None,
     standalone   : true,
-    imports      : [MatButtonModule, RouterLink, MatIconModule, MatCardModule, NgFor, NgIf,
-        FormsModule, MatCheckboxModule, MatSidenavModule, MatFormFieldModule, MatInputModule,
-         ReactiveFormsModule, JsonPipe],
+    imports      : [MatButtonModule, RouterLink, MatIconModule, MatCardModule, NgFor, NgIf, MatDialogModule,
+        FormsModule, MatCheckboxModule, MatSidenavModule, MatFormFieldModule, MatInputModule, 
+          JsonPipe],
 })
 export class ChefMainComponent implements OnInit
 {   
     value = "";
-
-    toppings: FormGroup;
 
     pizzas: Pizza[];
     toppingList:Toppings[];
@@ -47,7 +48,10 @@ export class ChefMainComponent implements OnInit
      * Constructor
      */
 
-    constructor(private _pizzaService: PizzaService, private _formBuilder: FormBuilder, private _toppingService: ToppingService)
+    constructor(private _pizzaService: PizzaService,         
+        private _toppingService: ToppingService,
+        public deleteConfirmDialog: MatDialog
+        )
     {}
 
 
@@ -101,7 +105,7 @@ export class ChefMainComponent implements OnInit
                 this.pizza={
 
                     id: null,
-                    name: '',
+                    name: null,
                     pic: '',
                     price: 0,
                     description: '',        
@@ -121,6 +125,26 @@ export class ChefMainComponent implements OnInit
 
     }
 
+    submitForm(form: NgForm) {
+
+        console.log(form);
+        console.log(this.pizza);
+      
+        if (form.valid) {
+          // Handle form submission
+          console.log('Form submitted successfully!');
+
+          if(this.pizza.id){
+            this.UpdatePizza();
+          }
+          else{
+            this.CreatePizza();
+          }
+
+        }
+      }
+      
+
     UpdatePizza(){
         
         this._pizzaService.updatePizza(this.pizza).subscribe(
@@ -138,13 +162,28 @@ export class ChefMainComponent implements OnInit
 
     DeletePizza(_pizza:Pizza){
 
-        this._pizzaService.deletePizza(_pizza).subscribe(
-            response=>{
-                //mock
-                 let index = this.pizzas.findIndex(p=>p.id===_pizza.id);
-                 this.pizzas.splice(index,1);
+        const dialogRef = this.deleteConfirmDialog.open(DeleteConfirmDialog, {
+            width: '250px',
+          });
+      
+          dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+
+              console.log(result);
+              // Call your delete function here
+              this._pizzaService.deletePizza(_pizza).subscribe(
+                response=>{
+                    //mock
+                     let index = this.pizzas.findIndex(p=>p.id===_pizza.id);
+                     this.pizzas.splice(index,1);
+                }
+            );
+              console.log('Delete confirmed');
             }
-        );
+          });
+        
+
+       
     }
 
     Reset(){
