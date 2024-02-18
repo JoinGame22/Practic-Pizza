@@ -134,6 +134,9 @@ export class ChefMainComponent implements OnInit
           // Handle form submission
           console.log('Form submitted successfully!');
 
+          //check the pizza name can't repeat
+          
+
           if(this.pizza.id){
             this.UpdatePizza();
           }

@@ -23,36 +23,6 @@ module.exports = {
   },
   experiments: {
     outputModule: true
-  },
-  plugins: [
-    new ModuleFederationPlugin({
-        library: { type: "module" },
+  }
 
-        // For remotes (please adjust)
-        name: "frproject",
-        filename: "remoteEntry.js",
-        exposes: {
-             './FMComponent': './/src/app/modules/component/fm65c0787cb1a0bc7c6fa3d459.component.ts',
-        },
-
-        // For hosts (please adjust)
-        // remotes: {
-        //     "mfe1": "http://localhost:3000/remoteEntry.js",
-
-        // },
-
-        shared: share({
-          "@angular/core": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-          "@angular/common": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-          "@angular/common/http": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-          "@angular/router": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-
-          "@angular/material": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-
-          ...sharedMappings.getDescriptors()
-        })
-
-    }),
-    sharedMappings.getPlugin()
-  ],
 };
