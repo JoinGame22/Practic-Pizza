@@ -6,7 +6,7 @@ import { Route } from '@angular/router';
 export const appRoutes: Route[] = [
 
     // Redirect empty path to '/test'
-    {path: '', loadChildren: () => import('app/modules/chefPage/home.routes')},
+    {path: '', loadChildren: () => import('app/modules/home/home.routes')},
     {path: 'test', loadChildren: () => import('app/modules/test/test.routes')}
 
 ];
