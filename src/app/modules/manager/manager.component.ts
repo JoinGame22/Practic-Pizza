@@ -119,6 +119,15 @@ export class managerComponent implements  OnInit
                 //mock
                  let index = this.toppingList.findIndex(p=>p.id===this.topping.id);
                  this.toppingList.splice(index,1, this.topping);
+
+                 this.topping={
+
+                    id: null,
+                    name:'',
+                    pic:'',
+                    price:0,
+                    description:''
+                };
             }
 
         );
