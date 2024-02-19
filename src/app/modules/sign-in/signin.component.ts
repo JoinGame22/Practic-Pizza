@@ -20,7 +20,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 })
 export class SignInComponent implements OnInit
 {
-
+    hide = true;
+    
     userName:string;
     password:string;
 
