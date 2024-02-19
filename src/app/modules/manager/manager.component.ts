@@ -68,16 +68,21 @@ export class managerComponent implements  OnInit
           // Handle form submission
           console.log('Form submitted successfully!');
 
-          //check the pizza name can't repeat
+          let index = this.toppingList.findIndex(p=>p.name.toUpperCase()===this.topping.name.toUpperCase());
+          console.log(index);
           
-
-          if(this.topping.id){
-            this.UpdateTopping();
-          }
-          else{
-            this.CreateTopping();
-          }
-
+            if(index<0)
+            {  
+                if(this.topping.id){
+                    this.UpdateTopping();
+                }
+                else{
+                    this.CreateTopping();
+                }
+            }
+            else{
+                alert("Choose another Name. Name already Exist.");
+            }
         }
       }
 

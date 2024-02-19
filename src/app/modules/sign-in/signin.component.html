@@ -1,8 +1,11 @@
-<div class="flex flex-col items-center justify-center h-full">
-    <div class="ml-8 mr-auto ">
-        <div class="max-w-none mx-auto prose prose-sm">
+<div class="flex flex-col items-center justify-center w-full w-screen h-screen">
+    <div class="w-full max-w-sm">
+        <div class="prose prose-sm">
             
-            <h1>Pizza Management</h1>
+            <img decoding="async" class="img-with-animation skip-lazy animated-in" data-delay="0" height="52" width="312" src="https://images.g2crowd.com/uploads/product/image/social_landscape/social_landscape_146092c81bb89b8415aa5dbeeb75061b/strongmind.png" alt="">
+
+            <h1 class="text-center">Pizza Management</h1>
+            
             <p>
                 UserName: 
                 <mat-form-field appearance="outline">
@@ -12,8 +15,10 @@
                         [ngModelOptions]=" {standalone: true}">
                 </mat-form-field>
             </p>
+            
+            <div>Password:</div>
+
             <p>
-                Password:
                 <mat-form-field appearance="outline">
                     <mat-label>Password</mat-label>
                     <input matInput placeholder="Password" 
@@ -22,7 +27,7 @@
                 </mat-form-field>
             </p>
         </div>
-        <div>
+        <div class="text-center">
             <a
                 class="mt-8"
                 mat-flat-button
@@ -37,5 +42,3 @@
         </div>
     </div>
 </div>
-
-
