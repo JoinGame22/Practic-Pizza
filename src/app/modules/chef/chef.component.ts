@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import Pizza from 'app/interface/pizza';
 import Toppings from 'app/interface/topping';
 import { PizzaService } from 'app/pizza.service';
@@ -50,6 +50,7 @@ export class ChefMainComponent implements OnInit
 
     constructor(private _pizzaService: PizzaService,         
         private _toppingService: ToppingService,
+        private _router: Router,
         public deleteConfirmDialog: MatDialog
         )
     {}
@@ -206,6 +207,11 @@ export class ChefMainComponent implements OnInit
         
 
        
+    }
+    
+    signOut()
+    {
+        this._router.navigate(['']);
     }
 
     Reset(){

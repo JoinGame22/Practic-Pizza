@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import Toppings from 'app/interface/topping';
 import {MatCardModule} from '@angular/material/card';
 import { NgFor, JsonPipe, NgIf} from '@angular/common';
@@ -43,7 +43,8 @@ export class managerComponent implements  OnInit
      */
 
     constructor(private _formBuilder: FormBuilder, 
-        private _toppingService: ToppingService, 
+        private _toppingService: ToppingService,
+        private _router: Router,
         public deleteConfirmDialog: MatDialog)
     {}
 
@@ -163,6 +164,11 @@ export class managerComponent implements  OnInit
             }
           });
 
+    }
+
+    signOut()
+    {
+        this._router.navigate(['']);
     }
 
     Reset(){
