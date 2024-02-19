@@ -58,7 +58,7 @@ export class SignInComponent implements OnInit
         }
         else{
             
-            console.log("Error");
+            alert("Wrong UserName or Password.");
         }
 
     }
