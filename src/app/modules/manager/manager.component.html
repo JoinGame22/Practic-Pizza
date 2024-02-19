@@ -118,6 +118,7 @@
                         <input
                             matInput
                             required
+                            [disabled]="topping.id!=null"
                             [(ngModel)]="topping!.name"
                             #name="ngModel" 
                             [ngModelOptions]="{standalone: true}"                            
@@ -176,7 +177,7 @@
     
 
                 <div *ngIf="topping.id" class="mt-4">
-                  <button mat-raised-button type="submit" [disabled]="!name.valid || !description.valid|| !price.valid">Update Topping</button>
+                  <button mat-raised-button type="submit" [disabled]="!description.valid|| !price.valid">Update Topping</button>
                 </div>
             
                <div *ngIf="topping.id===null"  class="mt-4">

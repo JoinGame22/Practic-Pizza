@@ -69,21 +69,23 @@ export class managerComponent implements  OnInit
           // Handle form submission
           console.log('Form submitted successfully!');
 
-          let index = this.toppingList.findIndex(p=>p.name.toUpperCase()===this.topping.name.toUpperCase());
-          console.log(index);
-          
-            if(index<0)
-            {  
-                if(this.topping.id){
-                    this.UpdateTopping();
-                }
-                else{
-                    this.CreateTopping();
-                }
+          if(this.topping.id){
+            this.UpdateTopping();
             }
             else{
-                alert("Choose another Name. Name already Exist.");
+                let index = this.toppingList.findIndex(p=>p.name.toUpperCase()===this.topping.name.toUpperCase());
+                if(index<0)
+                {
+                 
+                      this.CreateTopping();
+                  
+                }
+                else{
+                  alert("Choose another Name. Name already Exist.");
+                }
+            
             }
+           
         }
       }
 

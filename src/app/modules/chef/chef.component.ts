@@ -133,24 +133,26 @@ export class ChefMainComponent implements OnInit
       
         if (form.valid) {
           // Handle form submission
-          console.log('Form submitted successfully!');
+          console.log('Form submitted successfully!'); 
 
-          //check the pizza name can't repeat
-          let index = this.pizzas.findIndex(p=>p.name.toUpperCase()===this.pizza.name.toUpperCase());
-
-          if(index<0)
-          {
-            if(this.pizza.id){
-                this.UpdatePizza();
+          if(this.pizza.id){
+            this.UpdatePizza();
             }
             else{
-                this.CreatePizza();
+                let index = this.pizzas.findIndex(p=>p.name.toUpperCase()===this.pizza.name.toUpperCase());
+                if(index<0)
+                {
+                 
+                      this.CreatePizza();
+                  
+                }
+                else{
+                  alert("Choose another Name. Name already Exist.");
+                }
+            
             }
-          }
-          else{
-            alert("Choose another Name. Name already Exist.");
-          }
 
+      
         }
       }
       

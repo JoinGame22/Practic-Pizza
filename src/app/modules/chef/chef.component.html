@@ -118,7 +118,8 @@
                             [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
                         <input
                             matInput
-                            required                           
+                            required
+                            [disabled]="pizza.id!=null"
                             [(ngModel)]="pizza!.name"      
                             #name="ngModel"                    
                             [ngModelOptions]="{standalone: true}"                            
@@ -187,7 +188,7 @@
     
 
                 <div *ngIf="pizza.id" class="mt-4">
-                  <button mat-raised-button type="submit" [disabled]="!name.valid || !description.valid|| !price.valid">Update Pizza</button>
+                  <button mat-raised-button type="submit" [disabled]="!description.valid|| !price.valid">Update Pizza</button>
                 </div>
             
                <div *ngIf="pizza.id===null"  class="mt-4">
