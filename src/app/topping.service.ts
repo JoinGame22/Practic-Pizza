@@ -9,7 +9,7 @@ export class ToppingService {
   constructor(private _httpClient: HttpClient) { }
 
   findAllToppings(){
-    return this._httpClient.get<any>('http://private-89370-pizzaservice.apiary-mock.com/pizza-service/v1/topping/List');
+    return this._httpClient.get<any>('https://private-89370-pizzaservice.apiary-mock.com/pizza-service/v1/topping/List');
   }
 
   createTopping(topping:any){
