@@ -151,9 +151,11 @@
                         <input
                             [required]="'true'"
                             matInput
+                            type="number"
+                            #price="ngModel"  
                             [(ngModel)]="pizza!.price"
                             [ngModelOptions]="{standalone: true}"                            
-                            [placeholder]="'Name'"
+                            [placeholder]="'0.00'"
                             [spellcheck]="false">
                     </mat-form-field>
                 </div>
@@ -172,6 +174,7 @@
                         <input
                             matInput
                             [required]="'true'"
+                            #description="ngModel"   
                             [(ngModel)]="pizza!.description"
                             [ngModelOptions]="{standalone: true}"                            
                             [placeholder]="'Description'"
@@ -182,15 +185,15 @@
     
 
                 <div *ngIf="pizza.id" class="mt-4">
-                  <button mat-raised-button type="submit" [disabled]="form.invalid">Update Pizza</button>
+                  <button mat-raised-button type="submit" [disabled]="!name.valid || !description.valid|| !price.valid">Update Pizza</button>
                 </div>
             
                <div *ngIf="pizza.id===null"  class="mt-4">
-                  <button mat-raised-button type="submit" [disabled]="form.invalid">Create Pizza</button>
+                  <button mat-raised-button type="submit" [disabled]="!name.valid || !description.valid || !price.valid">Create Pizza</button>
                 </div>
             
             </div>
-             </form>
+            </form>
 
         </mat-drawer-content>
 

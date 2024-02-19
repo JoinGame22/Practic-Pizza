@@ -99,7 +99,8 @@
                 <button class="ml-auto" [color]="'primary'" mat-raised-button (click)="Reset()">Reset</button>
 
             </div>
-           
+            
+            <form #form="ngForm"  (ngSubmit)="submitForm(form)">
             <div class="relative flex flex-col flex-auto items-center w-full px-6 sm:px-12">
                           
                  <!-- Name -->
@@ -114,13 +115,17 @@
                             [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
                         <input
                             matInput
-                            [required]="'true'"
+                            required
                             [(ngModel)]="topping!.name"
+                            #name="ngModel" 
                             [ngModelOptions]="{standalone: true}"                            
                             [placeholder]="'Name'"
                             [spellcheck]="false">
                     </mat-form-field>
-                </div>       
+                </div>
+                    <div *ngIf="name.invalid && (name.dirty || name.touched)">
+                        <div *ngIf="name.errors.required">Name is required.</div>
+                    </div>
               
                    <!-- Name -->
                    <div class="mt-8 w-full">
@@ -135,9 +140,11 @@
                         <input
                             [required]="'true'"
                             matInput
+                            type="number"
+                            #price="ngModel"
                             [(ngModel)]="topping!.price"
                             [ngModelOptions]="{standalone: true}"                            
-                            [placeholder]="'Name'"
+                            [placeholder]="'0.00'"
                             [spellcheck]="false">
                     </mat-form-field>
                 </div>
@@ -156,9 +163,10 @@
                         <input
                             matInput
                             [required]="'true'"
+                            #description="ngModel" 
                             [(ngModel)]="topping!.description"
                             [ngModelOptions]="{standalone: true}"                            
-                            [placeholder]="'Name'"
+                            [placeholder]="'Description'"
                             [spellcheck]="false">
                     </mat-form-field>
                 </div>
@@ -166,15 +174,15 @@
     
 
                 <div *ngIf="topping.id" class="mt-4">
-                  <button mat-raised-button (click)="UpdateTopping()">Update Topping</button>
+                  <button mat-raised-button type="submit" [disabled]="!name.valid || !description.valid|| !price.valid">Update Topping</button>
                 </div>
             
                <div *ngIf="topping.id===null"  class="mt-4">
-                  <button mat-raised-button (click)="CreateTopping()">Create Topping</button>
+                  <button mat-raised-button type="submit" [disabled]="!name.valid || !description.valid || !price.valid">Create Topping</button>
                 </div>
             
             </div>
-            
+        </form>
 
         </mat-drawer-content>
 

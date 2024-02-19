@@ -155,6 +155,19 @@ export class ChefMainComponent implements OnInit
                 //mock
                  let index = this.pizzas.findIndex(p=>p.id===this.pizza.id);
                  this.pizzas.splice(index,1, this.pizza);
+
+
+                 this.pizza={
+
+                    id: null,
+                    name: null,
+                    pic: '',
+                    price: 0,
+                    description: '',        
+                    topping:'',
+                    toppingList: []
+            
+                };
             }
 
         );
